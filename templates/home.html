@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sales</title>
+  
+    <link rel="stylesheet" href="{{url_for('static', filename='style/design.css')}}">
+    
+
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <div id="logo"><img src="https://ofrf.org/wp-content/uploads/2020/06/OFRF-logo-stacked-180px.png" width="100px" ></div>
+            <div class="texts"><p>Home</p></div>
+            <div class="texts"><p>Login</p></div>
+            <div class="texts"><p>Register</p></div>
+            <div class="texts"><p>About</p></div>
+            <div class="texts"><p>Support</p></div>
+            <div class="texts">
+                <p>More</p>
+                <p><i class="ri-arrow-down-s-line"></i></p>
+            </div>
+            
+            <div id="contact"><p style="text-align: center"><u>Contact Us</u></p>
+                <p>7014080430</p>
+            <p>6264161588</p></div>
+            <div class="icon"><i class="ri-search-line"></i></div>
+            <div class="icon"><i class="ri-global-line"></i></div>
+            <div id="login"><i class="ri-user-3-fill"></i>
+            <p>Login</p></div>
+            <div id="try"><p>Try For Free </p></div>
+            
+        </div>
+        <div id="fakeheader"></div>
+        <div id="page1">
+            <div id="strip">
+                <p id="a">LifeMakers</p>
+                <p id="b"> The future of
+                    farming is here.</p>
+                <u>Discover Crops</u>
+
+            
+        </div>
+            <div id="content">
+                <div id="box1">
+                    <h1>Hello LifeMakers</h1>
+                    <p>FARMING IS NOT JUST A JOB,IT'S A WAY OF LIFE</p>
+                    <p> Welcomes you on our website, Hope you are earning well from your farm but we are here for you to provide some suggetions about your crop cultivation We recommends you to which crop you should grow in your farm for better yields. Its very easy to predict which crop you should grow on the basis of your soil nutrients just you need to know your soil nutrients for this you can test your soil in lab.</p>
+                    <div id="btns">
+                        
+                        
+                        <div id="btn2"><form action="/Predict">
+                            <input type="submit" id="Predict" name="Predict" action="/Predict" value="Predict">
+                        </form> </div>
+                    </div>
+                </div>
+                <div id="box2">
+                    <img src="https://plus.unsplash.com/premium_photo-1661962692059-55d5a4319814?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWdyaWN1bHR1cmV8ZW58MHx8MHx8fDA%3D" alt="">
+                    
+                </div>
+            </div>
+            
+
+        </div>
+        <div id="page2">
+            <div id="page2box3"><h1>ABOUT</h1> </div>
+        <div class="page2box">
+            
+            <div id="page2box1"><img src="{{ url_for('static', filename='style/pr.jpeg') }}" alt=""></div>
+            <div id="page2box2"></div>
+        </div>
+    </div>
+    <div id="page3">
+    </div>
+</body>
+</html>
