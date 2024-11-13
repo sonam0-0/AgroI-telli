@@ -1,13 +1,23 @@
 body {
-    background-image: url('image.jpg');
+    background-image: url('https://images.pexels.com/photos/1414651/pexels-photo-1414651.jpeg?auto=compress&cs=tinysrgb&w=1200');
     background-size: cover;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 36px;
-    color: white;
+    color: black;
     font-family: Arial, sans-serif;
     text-shadow: 2px 2px #333;
+    margin: 0;
   }
-  
+  .text-container {
+    text-align: center; 
+    background-color: rgba(255, 255, 255, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h4 {
+    margin: 10px 0; 
+}

@@ -2,11 +2,12 @@
   <head>
     <link rel="stylesheet" href="{{url_for('static',filename='style/prdiction_css.css')}}">
   </head>
-  <body>
-    <h4>According to your soil neutrients</h4>
-    <h4> You Should Grow -> </h4>
-    <br>
-    <br>
-    <h4>{{prediction}}</h4>
+  <body >
+    <div class="text-container">
+      <h4>According to your soil nutrients,</h4>
+      <h4>You should grow:</h4>
+      <br> <!-- Adds an empty line between the two headings -->
+      <h4>{{prediction}}</h4>
+    </div>
   </body>
 </html>
