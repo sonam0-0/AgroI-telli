@@ -1,0 +1,2 @@
+2024-11-13 19:42:58,801 - __main__ - INFO - Received form data: Nitrogen=50.0, Phosphorus=42.0, Potassium=41.0, Temperature=25.0, Humidity=8.0, Ph=6.8, Rainfall=202.0
+2024-11-13 19:43:00,085 - __main__ - INFO - Predicted crop: Apple
