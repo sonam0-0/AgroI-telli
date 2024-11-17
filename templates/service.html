@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style/ser.css')}}">
+  
+</head>
+<body>
+    <div class="main">
+        <div class="header"> <h1>Our Service</h1></div>
+        <div id="fakeheader"> </div>
+        <div class ="box">
+            
+            
+            <!-- Button to go to crop yield prediction form -->
+           \
+            <div id="box1">
+                
+               <img src="https://images.pexels.com/photos/29396733/pexels-photo-29396733/free-photo-of-scenic-landscape-with-palm-trees-and-mountains.jpeg?auto=compress&cs=tinysrgb&w=800"  >
+               
+               <a href="{{ url_for('prediction') }}">
+                <button>Predict Crop Recommendation</button>
+            </a>
+            </div>
+            
+            <div id="box2">
+                <img src="https://images.pexels.com/photos/265216/pexels-photo-265216.jpeg?auto=compress&cs=tinysrgb&w=800">
+                
+                <a href="{{ url_for('prediction2') }}">
+                    <button>Predict Crop Yield</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

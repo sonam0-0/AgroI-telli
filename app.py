@@ -1,5 +1,19 @@
-import joblib
-from flask import Flask, render_template, request
+from flask import Flask,request,render_template
+import numpy as np
+import pandas as pd
+import sklearn
+import pickle
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+
+
+
+model = pickle.load(open('mode.pkl','rb'))
+sc = pickle.load(open('standscale.pkl','rb'))
+mx = pickle.load(open('minmaxscale.pkl','rb'))
+
+
+dtr = pickle.load(open('dtr.pkl','rb'))
+preprocessor = pickle.load(open('preprocessor.pkl','rb'))
 
 
 crop_dict = {
@@ -10,6 +24,10 @@ crop_dict = {
 }
 
 app = Flask(__name__)
+def clean_input_data(features):
+    """Clean the input data by stripping whitespace characters (spaces, tabs, etc.)"""
+    return [[str(val).strip() for val in row] for row in features]
+
 
 # Home route
 @app.route('/')
@@ -17,50 +35,78 @@ def index():
     return render_template('home.html')  
 
 # Prediction form route
-@app.route('/Predict')
+@app.route('/service')
+def service():
+    return render_template('service.html')
+
+@app.route('/prediction')
 def prediction():
     return render_template('Index.html')
+
+@app.route('/prediction2')
+def prediction2():
+    return render_template('main.html')
+
+
+@app.route('/work',methods=['POST'])
+def pred():
+    if request.method=='POST':
+        Year=request.form['Year']
+        average_rain_fall_mm_per_year=request.form['average_rain_fall_mm_per_year']
+        pesticides_tonnes = request.form['pesticides_tonnes']
+        avg_temp = request.form['avg_temp']
+        Area = request.form['Area']
+        Item  = request.form['Item']
+        # Load preprocessing pipeline
+        
+
+        
+        features = np.array([[Year,average_rain_fall_mm_per_year,pesticides_tonnes,avg_temp,Area,Item]],dtype=object)
+        
+        cleaned_features = clean_input_data(features)
+        transformed_features = preprocessor.transform(cleaned_features)
+        prediction = dtr.predict(transformed_features).reshape(1,-1)
+        predicted_yield = prediction[0] 
+        return render_template('pro.html',prediction = predicted_yield)
 
 # Form submission and prediction route
 @app.route('/form', methods=["POST"])
 def brain():
     try:
-        # Get form inputs
-        Nitrogen = float(request.form['Nitrogen'])
-        Phosphorus = float(request.form['Phosphorus'])
-        Potassium = float(request.form['Potassium'])
-        Temperature = float(request.form['Temperature'])
-        Humidity = float(request.form['Humidity'])
-        Ph = float(request.form['ph'])
-        Rainfall = float(request.form['Rainfall'])
+    
+        N = int(request.form['Nitrogen'])
+        P = int(request.form['Phosphorus'])
+        K = int(request.form['Potassium'])
+        temp = float(request.form['Temperature'])
+        humidity = float(request.form['Humidity'])
+        ph = float(request.form['ph'])
+        rainfall = float(request.form['Rainfall'])
+    
+    
+        input_data = pd.DataFrame([[N, P, K, temp, humidity, ph, rainfall]], 
+                          columns=['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall'])
+    
+        features_scaled = mx.transform(input_data )  
+        features_scaled = sc.transform(features_scaled )  
 
-        # Validate inputs to ensure they're positive and within realistic ranges
-        if Nitrogen <= 0 or Phosphorus <= 0 or Potassium <= 0 or Temperature <= 0 or Humidity <= 0 or Ph <= 0 or Rainfall <= 0:
-            return "Error: All values must be positive."
+        predicted_label = model.predict(features_scaled)[0]  
 
-        if not (0 <= Ph <= 14 and 0 <= Temperature <= 100 and 0 <= Humidity <= 100):
-            return "Error: Please enter realistic values for temperature, humidity, and pH."
+    # predicted_crop = {v: k for k, v in crop_dict.items()}[predicted_label]
+        predicted_crop = crop_dict[predicted_label]
 
-        # Prepare the input values
-        values = [Nitrogen, Phosphorus, Potassium, Temperature, Humidity, Ph, Rainfall]
-
-        # Load the trained model
-        model = joblib.load('crop_app')  # Ensure your model file 'crop_app' is in the correct location
-
-        # Make prediction
-        prediction_id = model.predict([values])[0]  # Assuming model outputs a single prediction ID
-        
-        # Get the corresponding crop name from the dictionary
-        prediction_crop = crop_dict.get(prediction_id, "Unknown Crop")
-
-        # Render the prediction result in the template
-        return render_template('prediction.html', prediction=prediction_crop)
-
-    except FileNotFoundError:
-        return "Model file not found. Please ensure that the model file 'crop_app' exists."
+        # print(f"The recommended crop based on the input data is: {predicted_crop}")
+        return render_template('prediction.html', result=predicted_crop)
+     
     except Exception as e:
-        return f"An error occurred: {str(e)}"
+        print(f"Error occurred: {e}")
+        return render_template('prediction.html', result="An error occurred while making the prediction. Please check your input values.")
+
+  
+
+
+        
+          
 
 if __name__ == '__main__':
-    app.run(debug=True, port=7000)
+    app.run(debug=True, port=5000)
 

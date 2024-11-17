@@ -19,9 +19,11 @@
             <div class="texts"><p>About</p></div>
             <div class="texts"><p>Support</p></div>
             <div class="texts">
-                <p>More</p>
-                <p><i class="ri-arrow-down-s-line"></i></p>
+                <a href="{{ url_for('service') }}">
+                    <p>Our Service</p>
+                </a>
             </div>
+            
             
             <div id="contact"><p style="text-align: center"><u>Contact Us</u></p>
                 <p>7014080430</p>
@@ -50,10 +52,21 @@
                     <p> Welcomes you on our website, Hope you are earning well from your farm but we are here for you to provide some suggetions about your crop cultivation We recommends you to which crop you should grow in your farm for better yields. Its very easy to predict which crop you should grow on the basis of your soil nutrients just you need to know your soil nutrients for this you can test your soil in lab.</p>
                     <div id="btns">
                         
+                        <!--<a href="{{ url_for('prediction') }}">
+                            <button>Predict Crop Recommendation</button>
+                        </a>-->
                         
-                        <div id="btn2"><form action="/Predict">
+                        <!-- Button to go to crop yield prediction form -->
+                        <!--<a href="{{ url_for('prediction2') }}">
+                            <button>Predict Crop Yield</button>
+                        </a> -->
+                       <!-- <div id="btn2"><form action="/Predict">
                             <input type="submit" id="Predict" name="Predict" action="/Predict" value="Predict">
-                        </form> </div>
+                        </form> </div> 
+                      <div id="btn3"><form action="/Predict2">
+                            <input type="submit" id="Predict2" name="Predict2" action="/Predict2" value="Predict2">
+                        </form> </div> -->
+
                     </div>
                 </div>
                 <div id="box2">
@@ -69,10 +82,49 @@
         <div class="page2box">
             
             <div id="page2box1"><img src="{{ url_for('static', filename='style/pr.jpeg') }}" alt=""></div>
-            <div id="page2box2"></div>
+            <div id="page2box2"><h3><p>Welcome to AgroIntelli! We are a forward-thinking agricultural technology company dedicated to transforming the future of farming. At AgroIntelli, we leverage cutting-edge data science, AI, and machine learning to provide farmers with accurate crop yield predictions and tailored crop recommendations.</p><br>
+
+               <p><u style="text-decoration: underline; text-decoration-color: blue;"> Our goal is simple: </u>to empower farmers with actionable insights that optimize crop production, increase efficiency, and promote sustainable agricultural practices. Through our innovative solutions, farmers can make data-driven decisions, reduce risks, and achieve higher yields while minimizing environmental impact.</p><br>
+                
+                <p>We believe in the power of technology to shape a smarter, more resilient agricultural sector. Whether you're a smallholder or a large-scale producer, AgroIntelli is here to help you grow more with less, ensuring a better future for agriculture and the planet.</p></h3></div>
         </div>
     </div>
     <div id="page3">
+        <div id="page3box4"><h1>GET IN TOUCH</h1> </div>
+        <!--<div class="icon1"><i class="ri-user-location-fill"></i></div>-->
+        <div class="half">
+        <div class ="cicle1"> <img src="https://cdn-icons-png.flaticon.com/128/16019/16019815.png" ><p id="a1">ADDRESS</p>
+        <div id="add"> 
+            <p>Plot No. 8-11, TechZone 2,</p>
+            <p>Greater Noida-201310, Uttar Pradesh,India</p>
+            <h3>Bennett University</h3>
+            
+        </div>
+       </div>
+        <div class ="cicle2"><img src="https://cdn-icons-png.flaticon.com/128/6596/6596115.png"><p id="a2">PHONE</p>
+        <div id="pho">
+            <h3>Contact-No:Sonam</h3>
+            <h3>7014080430</h3>
+            <br>
+            <h3>Contact-No:Suhani</h3>
+            <h3>6264161588</h3>
+        </div>
+        </div>
+        <div class ="cicle3"><img src="https://cdn-icons-png.flaticon.com/128/6244/6244710.png"><p id="a3">EMAIL</p>
+        <div id="email">
+            <h3>Email-Id: Sonam</h3>
+            <h3>sonamyadav90990@gmail.com</h3>
+            <br>
+            <h3>Email-Id: Suhani</h3>
+            <h3>suhaniagarwal3105@gmail.com</h3>
+
+        </div>
+        </div>
+        <div id="insta"><img src="https://cdn-icons-png.flaticon.com/128/3955/3955024.png"></div>
+        <div id="link"><img src="https://cdn-icons-png.flaticon.com/128/4494/4494497.png"></div>
+        <div id="What"> <img src="https://cdn-icons-png.flaticon.com/128/3938/3938058.png"></div>
+
+        </div>
     </div>
 </body>
 </html>
