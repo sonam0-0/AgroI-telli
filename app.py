@@ -34,6 +34,10 @@ def clean_input_data(features):
 def index():
     return render_template('home.html')  
 
+@app.route('/login')
+def login():
+    return render_template('login.html') 
+
 # Prediction form route
 @app.route('/service')
 def service():
